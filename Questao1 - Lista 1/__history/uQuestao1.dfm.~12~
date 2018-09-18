@@ -1,0 +1,67 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 259
+  ClientWidth = 350
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object lbLabel1: TLabel
+    Left = 40
+    Top = 33
+    Width = 46
+    Height = 13
+    Caption = 'Numero 1'
+  end
+  object lbLabel2: TLabel
+    Left = 40
+    Top = 61
+    Width = 46
+    Height = 13
+    Caption = 'Numero 2'
+  end
+  object lbLabel3: TLabel
+    Left = 40
+    Top = 88
+    Width = 46
+    Height = 13
+    Caption = 'Numero 3'
+  end
+  object btButtonVerificar: TButton
+    Left = 88
+    Top = 152
+    Width = 65
+    Height = 25
+    Caption = 'Verificar'
+    TabOrder = 0
+    OnClick = btButtonVerificarClick
+  end
+  object edEdit1: TEdit
+    Left = 92
+    Top = 29
+    Width = 121
+    Height = 21
+    TabOrder = 1
+  end
+  object edEdit2: TEdit
+    Left = 92
+    Top = 57
+    Width = 121
+    Height = 21
+    TabOrder = 2
+  end
+  object edEdit3: TEdit
+    Left = 92
+    Top = 84
+    Width = 121
+    Height = 21
+    TabOrder = 3
+  end
+end
