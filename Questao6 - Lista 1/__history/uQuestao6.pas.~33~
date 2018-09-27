@@ -1,0 +1,63 @@
+unit uQuestao6;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TForm1 = class(TForm)
+    leLabeledEdit1: TLabeledEdit;
+    leLabeledEdit2: TLabeledEdit;
+    btCalcularSalario: TButton;
+    procedure btCalcularSalarioClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Form1: TForm1;
+
+implementation
+
+{$R *.dfm}
+
+(*
+6.Escreva um programa que leia o salário hora do funcionário e
+o número de horas trabalhadas no mês e calcule o valor a ser pago.
+Até 220 horas trabalhadas basta simplesmente multiplicar o valor do
+salário hora pelo número de horas. A quantidade de horas que exceder 220 deverá
+ser paga com 50% a mais do seu valor.
+*)
+
+procedure TForm1.btCalcularSalarioClick(Sender: TObject);
+var
+  wHorasTrabalhadas  ,
+  wHorasEx           ,
+  wValorHora         ,
+  wSalario           ,
+  wSalarioEx         : Double;
+
+begin
+  wSalario := 0;
+  wHorasTrabalhadas := StrToFloat(leLabeledEdit2.Text);
+  wValorHora        := StrToFloat(leLabeledEdit1.Text);
+  if wHorasTrabalhadas <= 220 then
+     begin
+       wSalario := wHorasTrabalhadas * wValorHora;
+     end
+  else
+     begin
+       wSalarioEx := wValorHora - ((wValorHora*50)/100);
+       wSalario   := 220 * wValorHora;
+       wHorasEx   := wHorasTrabalhadas - 220;
+       wSalario   := wSalario + (  );
+     end;
+
+  ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+end;
+
+end.

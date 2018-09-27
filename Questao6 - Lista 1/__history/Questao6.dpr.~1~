@@ -1,0 +1,14 @@
+program Questao6;
+
+uses
+  Vcl.Forms,
+  uQuestao6 in 'uQuestao6.pas' {Form1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TForm1, Form1);
+  Application.Run;
+end.

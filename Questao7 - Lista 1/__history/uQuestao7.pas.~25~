@@ -1,0 +1,89 @@
+unit uQuestao7;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrQuestao7 = class(TForm)
+    leLabeledEdit1: TLabeledEdit;
+    leLabeledEdit2: TLabeledEdit;
+    btCalcular: TButton;
+    procedure btCalcularClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  frQuestao7: TfrQuestao7;
+
+implementation
+
+{$R *.dfm}
+
+procedure TfrQuestao7.btCalcularClick(Sender: TObject);
+var
+  wHorasTrabalhadas  ,
+  wHorasEx           ,
+  wValorHora         ,
+  wSalario           ,
+  wSalarioEx         : Double;
+
+begin
+  wSalario := 0;
+  wHorasTrabalhadas := StrToFloat(leLabeledEdit2.Text);
+  wValorHora        := StrToFloat(leLabeledEdit1.Text);
+  if wHorasTrabalhadas <= 220 then
+     begin
+       wSalario := wHorasTrabalhadas * wValorHora;
+     end
+  else
+     begin
+       wSalarioEx := wValorHora - ((wValorHora*50)/100);
+       wSalario   := 220 * wValorHora;
+       wHorasEx   := wHorasTrabalhadas - 220;
+       wSalario   := wSalario + (wHorasEx * (wValorHora + wSalarioEx));
+     end;
+
+  ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+
+  if wSalario >= 2000 then
+     begin
+     //25% de imposto
+       wSalario := (wSalario - ((wSalario*25)/100));
+       ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+     end
+  else
+  if wSalario >= 1500 then
+     begin
+     //20% de imposto
+       //wSalario := (wSalario - ((wSalario*20)/100));
+       ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+     end
+  else
+  if wSalario >= 1000 then
+     begin
+     //15% de imposto
+       wSalario := (wSalario - ((wSalario*15)/100));
+       ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+     end
+  else
+  if wSalario >= 500 then
+     begin
+     //10% de imposto
+       wSalario := (wSalario - ((wSalario*10)/100));
+       ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+     end
+  else
+     begin
+     //5% de imposto
+       wSalario := (wSalario - ((wSalario*5)/100));
+       ShowMessage('Salário a receber: ' + FloatToStr(wSalario));
+     end;
+end;
+
+end.
