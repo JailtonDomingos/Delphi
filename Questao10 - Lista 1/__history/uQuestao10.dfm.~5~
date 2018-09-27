@@ -1,0 +1,43 @@
+object Form1: TForm1
+  Left = 0
+  Top = 0
+  Caption = 'Form1'
+  ClientHeight = 280
+  ClientWidth = 302
+  Color = clBtnFace
+  Font.Charset = DEFAULT_CHARSET
+  Font.Color = clWindowText
+  Font.Height = -11
+  Font.Name = 'Tahoma'
+  Font.Style = []
+  OldCreateOrder = False
+  PixelsPerInch = 96
+  TextHeight = 13
+  object leNotaJuiz: TLabeledEdit
+    Left = 40
+    Top = 136
+    Width = 121
+    Height = 21
+    EditLabel.Width = 66
+    EditLabel.Height = 13
+    EditLabel.Caption = 'Digite a Nota:'
+    TabOrder = 0
+  end
+  object btCalcularNota: TButton
+    Left = 182
+    Top = 152
+    Width = 91
+    Height = 49
+    Caption = 'Calcular Nota'
+    TabOrder = 1
+    OnClick = btCalcularNotaClick
+  end
+  object btProximaNota: TButton
+    Left = 182
+    Top = 88
+    Width = 91
+    Height = 50
+    Caption = 'Proxima Nota'
+    TabOrder = 2
+  end
+end

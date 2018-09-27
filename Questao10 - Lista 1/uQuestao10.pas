@@ -1,0 +1,99 @@
+unit uQuestao10;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrQuestao10 = class(TForm)
+    edNotaJuiz: TLabeledEdit;
+    btCalcularNota: TButton;
+    btProximaNota: TButton;
+    procedure btCalcularNotaClick(Sender: TObject);
+    procedure btProximaNotaClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+    //wArrayINotas : Array[1..4] of Integer;
+    wMaiorNota,
+    wMenorNota,
+    wContador,
+    wResultadoMedia    : Double;
+  public
+    { Public declarations }
+  end;
+
+var
+  frQuestao10: TfrQuestao10;
+
+implementation
+
+{$R *.dfm}
+//10.Em uma competição 6 (seis) juízes informam notas reais variando de 0 a 10.
+ //Para calcular a nota do atleta deve-se excluir a maior e a menor nota dos juízes e
+  //fazer uma médias simples das demais notas. Faça um programa que lê as seis notas dos juízes e
+   //informa a nota final do atleta.
+
+
+procedure TfrQuestao10.btCalcularNotaClick(Sender: TObject);
+var
+  wI: Integer;
+begin
+  wResultadoMedia := wResultadoMedia / 4;
+  ShowMessage('A média final é: ' + FloatToStr(Round(wResultadoMedia)));
+  //Application.Terminate;
+  edNotaJuiz.SetFocus;
+end;
+
+procedure TfrQuestao10.btProximaNotaClick(Sender: TObject);
+begin
+  if (wContador <> 0) AND (wContador <= 6) then
+     begin
+       if (strtofloat(edNotaJuiz.Text) > wMenorNota) AND (strtofloat(edNotaJuiz.Text) < wMaiorNota) then
+          begin
+            wResultadoMedia := wResultadoMedia + strtofloat(edNotaJuiz.Text);
+          end
+       else
+       if strtofloat(edNotaJuiz.Text) < wMenorNota then
+          begin
+            wResultadoMedia := wResultadoMedia + wMenorNota;
+            wMenorNota      := strtofloat(edNotaJuiz.Text);
+          end
+       else
+          begin
+            wResultadoMedia := wResultadoMedia + wMaiorNota;
+            wMaiorNota      := strtofloat(edNotaJuiz.Text);
+          end;
+       wContador := wContador + 1;
+       edNotaJuiz.EditLabel.Caption := 'Nota ' + FloatToStr(wContador+1) + ':';
+     end
+  else
+  if wContador = 0 then
+     begin
+       wMaiorNota := strtofloat(edNotaJuiz.Text);
+       wMenorNota := strtofloat(edNotaJuiz.Text);
+       wContador := wContador + 1;
+       edNotaJuiz.EditLabel.Caption := 'Nota ' + FloatToStr(wContador+1) + ':';
+     end;
+  if wContador = 6 then
+     begin
+       edNotaJuiz.Enabled    := False;
+       btProximaNota.Enabled := False;
+       ShowMessage('Maximo de notas digitado!');
+     end
+  else
+     edNotaJuiz.SetFocus;
+end;
+
+procedure TfrQuestao10.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+     begin
+       Key := #0;
+       Perform(WM_NEXTDLGCTL, 0, 0);
+     end;
+end;
+
+end.
