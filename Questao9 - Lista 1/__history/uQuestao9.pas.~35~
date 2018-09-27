@@ -1,0 +1,69 @@
+unit uQuestao9;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
+
+type
+  TfrQuestao9 = class(TForm)
+    edLabeledEdit1: TLabeledEdit;
+    btInverter: TButton;
+    procedure btInverterClick(Sender: TObject);
+    procedure FormKeyPress(Sender: TObject; var Key: Char);
+  private
+    { Private declarations }
+
+  public
+    { Public declarations }
+  end;
+
+var
+  frQuestao9: TfrQuestao9;
+
+implementation
+
+{$R *.dfm}
+ //9.Escreva um algoritmo que leia uma palavra e inverta as letras;
+  //EX: "SCI Sistemas Contábeis" = "siebátnoC sametsiS ICS"
+
+
+procedure TfrQuestao9.btInverterClick(Sender: TObject);
+var
+  wPalavra,
+  wPalavraInvertida : String;
+  wContadorChar,
+  wI                : Integer;
+begin
+  wContadorChar := 0;
+  wPalavra      := edLabeledEdit1.Text;
+
+  while Copy(wPalavra, wContadorChar + 1, 1) <> '' do
+    begin
+      wContadorChar := wContadorChar + 1;
+    end;
+
+  wContadorChar := Length(wPalavra);
+
+  while wContadorChar <> 0 do
+    begin
+      wPalavraInvertida := wPalavraInvertida + Copy(wPalavra, wContadorChar, 1);
+  //    ShowMessage(Copy(wPalavra, wContadorChar, 1));
+      wContadorChar := wContadorChar - 1;
+    end;
+
+  ShowMessage(wPalavraInvertida);
+  edLabeledEdit1.SetFocus;
+end;
+
+procedure TfrQuestao9.FormKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+     begin
+       Key := #0;
+       Perform(WM_NEXTDLGCTL, 0, 0);
+     end;
+end;
+
+end.
